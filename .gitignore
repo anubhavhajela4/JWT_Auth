@@ -1,0 +1,19 @@
+# Ignore build output
+/target
+/build
+
+# IDE specific
+*.iml
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Sensitive config
+src/main/resources/application.properties
+src/main/resources/application.yml
