@@ -1,20 +1,17 @@
 package com.example.jwt_auth.service;
 
 
-import com.example.jwt_auth.DTO.AuthenicateRequest;
+import com.example.jwt_auth.DTO.AuthenticateRequest;
 import com.example.jwt_auth.DTO.AuthenticatedResponse;
 import com.example.jwt_auth.DTO.RegisterRequest;
 import com.example.jwt_auth.model.Role;
 import com.example.jwt_auth.model.User;
 import com.example.jwt_auth.repo.UserRepo;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.beans.Encoder;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +24,7 @@ public class AuthenticationService {
 
     public AuthenticatedResponse register(RegisterRequest request) {
         var user = User.builder()
-                .firstname(request.getFisrtName())
+                .firstname(request.getFirstName())
                 .lastname(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -40,7 +37,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticatedResponse authenticate(AuthenicateRequest request) {
+    public AuthenticatedResponse authenticate(AuthenticateRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
